@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Login from './pages/Login/Login';
+import { useState } from 'react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p className='text-purple-500'>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <PrivateRoute path='/' exact isLoggedIn={isLoggedIn}>
+          <Dashboard></Dashboard>
+        </PrivateRoute>
+        <Route path='/login' exact>
+          <Login login={() => setIsLoggedIn(true)} />
+        </Route>
+      </Switch>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login/Login';
 import { useState } from 'react';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,6 +17,9 @@ function App() {
         </PrivateRoute>
         <Route path='/login' exact>
           <Login login={() => setIsLoggedIn(true)} />
+        </Route>
+        <Route path='/about' exact>
+          <AboutUs></AboutUs>
         </Route>
       </Switch>
     </div>
